@@ -1,0 +1,9 @@
+{
+  "name": "xoom",
+  "version": "1.0.0",
+  "description": "XOOM using WebRTC and WebSockets",
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}
