@@ -9,20 +9,21 @@ app.set("views", __dirname + "/views");
 app.use("/public", express.static(__dirname + "/public"));
 
 app.get("/", (_, res) => res.render("home"));
-// app.get("/*", (_, res) => res.redirect("home"));
+app.get("/*", (_, res) => res.redirect("/"));
 
 const handleListen = () => console.log("Listening on localhost");
 
 const server = http.createServer(app);
-const webss = new WebSocket.Server({ server });
+const wss = new WebSocket.Server({ server });
 
-webss.on("connection", (socket) => {
+wss.on("connection", (socket) => {
   console.log("Connected to browser");
   socket.on("close", () => console.log("Disconnected from the client"));
-  socket.on("message", function incoming(message) {
-    console.log(message);
-  });
-  socket.send("Hello");
+  socket.onmessage = (message) => {
+    console.log(message["data"]);
+    socket.send(message["data"]);
+  };
+  socket.send("Hello!!!");
 });
 
 server.listen(3000, handleListen);

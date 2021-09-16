@@ -3,8 +3,6 @@ const messageForm = document.querySelector("form");
 
 const socket = new WebSocket(`ws://${window.location.host}`);
 
-socket.binaryType = "usvstring";
-
 socket.addEventListener("open", () => {
   console.log("Connected to Server");
 });
@@ -23,3 +21,9 @@ messageForm.addEventListener("submit", (event) => {
   socket.send(input.value.toString());
   input.value = "";
 });
+
+const hello = "Hello from the browser";
+
+setTimeout(() => {
+  socket.send(hello.toString());
+}, 5000);

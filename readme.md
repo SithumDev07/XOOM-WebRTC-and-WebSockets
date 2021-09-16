@@ -5,3 +5,8 @@
 Https are remember the use only once
 
 Webosockets are only about browser to backend server.
+
+### Note
+
+    There are some issues with wss.on("message", function);
+    So, use wss.onmessage instead.
