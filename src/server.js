@@ -20,16 +20,19 @@ const sockets = [];
 
 wss.on("connection", (socket) => {
   sockets.push(socket);
+  socket["nickname"] = "Anonymous";
   console.log("Connected to browser");
   socket.on("close", () => console.log("Disconnected from the client"));
   socket.onmessage = (message) => {
     const parsed = JSON.parse(message["data"]);
     switch (parsed.type) {
       case "new_message":
-        sockets.forEach((eachSocket) => eachSocket.send(parsed.payload));
+        sockets.forEach((eachSocket) =>
+          eachSocket.send(`${socket.nickname}: ${parsed.payload}`)
+        );
         break;
       case "nickname":
-        console.log(parsed.payload);
+        socket["nickname"] = parsed.payload;
         break;
       default:
         break;
