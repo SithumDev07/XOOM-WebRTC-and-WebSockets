@@ -23,7 +23,17 @@ wss.on("connection", (socket) => {
   console.log("Connected to browser");
   socket.on("close", () => console.log("Disconnected from the client"));
   socket.onmessage = (message) => {
-    sockets.forEach((eachSocket) => eachSocket.send(message["data"]));
+    const parsed = JSON.parse(message["data"]);
+    switch (parsed.type) {
+      case "new_message":
+        sockets.forEach((eachSocket) => eachSocket.send(parsed.payload));
+        break;
+      case "nickname":
+        console.log(parsed.payload);
+        break;
+      default:
+        break;
+    }
   };
 });
 
