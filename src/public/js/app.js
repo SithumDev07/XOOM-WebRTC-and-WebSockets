@@ -21,9 +21,3 @@ messageForm.addEventListener("submit", (event) => {
   socket.send(input.value.toString());
   input.value = "";
 });
-
-const hello = "Hello from the browser";
-
-setTimeout(() => {
-  socket.send(hello.toString());
-}, 5000);
