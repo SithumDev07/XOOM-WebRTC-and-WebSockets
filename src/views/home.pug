@@ -14,5 +14,10 @@ html(lang="en")
                 form
                     input(type="text", placeholder="Room name", required)
                     button Join room
+            div#room
+                ul
+                form
+                    input(type="text", required, placeholder="message")
+                    button notify
         script(src="/socket.io/socket.io.js")
         script(src="/public/js/app.js")

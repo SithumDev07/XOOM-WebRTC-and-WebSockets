@@ -25,6 +25,7 @@ io.on("connection", (socket) => {
 
   socket.on("room", (roomName, done) => {
     socket.join(roomName);
+    done();
   });
 });
 
