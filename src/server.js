@@ -17,6 +17,16 @@ const handleListen = () => console.log("Listening on localhost");
 
 const server = http.createServer(app);
 const io = SocketIO(server);
+
+io.on("connection", (socket) => {
+  socket.on("room", (message, done) => {
+    console.log(message);
+    setTimeout(() => {
+      done();
+    }, 2000);
+  });
+});
+
 // const wss = new WebSocket.Server({ server });
 
 // const sockets = [];
