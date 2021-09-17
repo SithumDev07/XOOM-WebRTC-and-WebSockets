@@ -10,11 +10,6 @@ html(lang="en")
         header 
             h1 Xoom
         main
-            form#nick
-                input(type="text", placeholder="Choose a nickname", required)
-                button save 
-            ul
-            form#message
-                input(type="text", placeholder="Type a message", required)
-                button  send 
+            
+        script(src="/socket.io/socket.io.js")
         script(src="/public/js/app.js")
