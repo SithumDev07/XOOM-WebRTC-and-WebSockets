@@ -18,3 +18,7 @@ socket.io is a framework and its using websocket. gives many features like,
     Realtime communication
     disconnection detections
     auto connect
+
+### socket.rooms
+
+every socket is in its own room already

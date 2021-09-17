@@ -19,11 +19,12 @@ const server = http.createServer(app);
 const io = SocketIO(server);
 
 io.on("connection", (socket) => {
-  socket.on("room", (message, done) => {
-    console.log(message);
-    setTimeout(() => {
-      done();
-    }, 2000);
+  socket.onAny((event) => {
+    console.log(`Socket event: ${event}`);
+  });
+
+  socket.on("room", (roomName, done) => {
+    socket.join(roomName);
   });
 });
 
